@@ -7,7 +7,7 @@ class Client():
         self.proxy = xmlrpc.client.ServerProxy(server)
 
     def run(self, func, *a, **kw):
-        ret = getattr(self.proxy, func)(*a,**kw)
+        ret = getattr(self.proxy, func)(a,kw)
         if ret['status'] == 'success':
             return pickle.loads(ret['data'].data)
         else:

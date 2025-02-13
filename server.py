@@ -19,7 +19,7 @@ def set_attr(**kw):
 
 def run_func(name):
     func = getattr(pyautogui, name)
-    def runfunc(*a, **kw):
+    def runfunc(a, kw):
         try:
             ret = func(*a, **kw)
             return {"status":"success", "data":pickle.dumps(ret)}
@@ -27,7 +27,6 @@ def run_func(name):
             return {"status":"fail", "data":str(e)}
     return runfunc
     
-
 def run_server(host='0.0.0.0', port=8006):
     server = SimpleXMLRPCServer((host, port))
     for name in get_func_names():
