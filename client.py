@@ -11,7 +11,7 @@ class Client():
         if ret['status'] == 'success':
             return pickle.loads(ret['data'].data)
         else:
-            raise Exception('rpc failed: ' + pickle.loads(ret['data'].data))
+            raise Exception('rpc failed: ' + ret['data'])
 
 if __name__ == '__main__':
     client = Client('http://localhost:8006')
