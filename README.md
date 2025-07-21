@@ -17,7 +17,12 @@ Client side:
 from client import Client
 
 client = Client('http://localhost:8006')
+
+# to move cursor to (10, 20)
 ret = client.run('moveTo', 10, 20)
+
+# to get screenshot of server
+img = clent.run('screenshot')
 ```
 
 You can make any pyautogui method by `client.run(<method_name>, *<method_args>, **<method_kwargs>)`
