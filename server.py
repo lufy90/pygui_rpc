@@ -4,6 +4,7 @@ import pyautogui
 import inspect
 import logging
 import pickle
+import PIL
 
 
 logging.basicConfig(filename="server.log", level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -22,6 +23,8 @@ def run_func(name):
     def runfunc(a, kw):
         try:
             ret = func(*a, **kw)
+            if isinstance(ret, PIL.PngImagePlugin.PngImageFile):
+                ret = ret.convert("RGB")
             return {"status":"success", "data":pickle.dumps(ret)}
         except Exception as e:
             return {"status":"fail", "data":str(e)}
